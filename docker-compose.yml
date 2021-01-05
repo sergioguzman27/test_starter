@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'menttu_db'
+      MYSQL_USER: 'menttu'
+      MYSQL_PASSWORD: 'Menttu1.'
+      MYSQL_ROOT_PASSWORD: 'Menttu1.'
+    ports:
+      - "3307:3306"
+  django:
+    build: ./api
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    restart: always
+    volumes:
+      - ./api:/app/api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  frontend:
+    build: ./frontend
+    command: ["npm", "start"]
+    volumes:
+      - ./frontend:/app/frontend
+      - node-modules:/app/frontend/node_modules
+    ports:
+      - "3000:3000"
+
+volumes:
+  node-modules:
+  db_data: {}
