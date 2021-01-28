@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../img/logo.svg';
-import '../css/App.css';
+import '../scss/App.scss';
 
 class App extends Component {
   render() {
@@ -13,6 +13,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/components/App.js</code> and save to reload.
         </p>
+        <h1>fdafdfd</h1>
       </div>
     );
   }
