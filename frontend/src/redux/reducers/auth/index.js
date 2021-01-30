@@ -28,14 +28,18 @@ export const setMe = me => ({
 // ------------------------------------
 export const onSubmit = (data = {}) => (dispatch, getStore) => {
     localStorage.setItem('token', 'fdfdfddf');
-    dispatch(setMe({}));
+    dispatch(setMe({id: 1, username: 'Sergio'}));
+    dispatch(push("/"));
 };
 
 export const getMe = () => (dispatch) => {
-    dispatch(setMe({}));
+    localStorage.setItem('token', 'fdfdfddf');
+    dispatch(setMe({id: 1, username: 'Sergio'}));
 };
 
 export const logOut = () => (dispatch) => {
+    dispatch(setMe({}));
+    dispatch(push("/login"));
     localStorage.removeItem('token');
 };
 
